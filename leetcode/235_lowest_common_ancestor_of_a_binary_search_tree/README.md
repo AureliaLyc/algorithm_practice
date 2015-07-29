@@ -9,3 +9,16 @@ According to the definition of LCA:"The LCA is defined between two nodes v and w
 同时，为了确保输入的两个节点的值顺序，需要做一下检测。
 
 这里复习一下BST相关的函数
+```cpp
+TreeNode* findNode(TreeNode* root, TreeNode* tar){
+    if( root->val == tar->val ){
+        return root;
+    }
+    if( root->val > tar->val ){
+        return findNode(root->left, tar);
+    }
+    else{
+        return findNode(root->right, tar);
+    }
+}
+```
