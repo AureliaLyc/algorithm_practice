@@ -14,4 +14,5 @@ Given a string S, find the longest palindromic substring in S. You may assume th
 
 
 ## 收获
-即便是一个笨法，我也应该先实现出来，要相信自己，毕竟不难。
+即便是一个笨法，我也应该先实现出来，要相信自己，毕竟不难。<br>
+另外，在网上找到了一个算法，名字叫做Manacher，需要研究一下看看。
