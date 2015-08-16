@@ -11,5 +11,7 @@ Given a string S, find the longest palindromic substring in S. You may assume th
 6. 实在是想不出其他方法了，没禁住诱惑，看了讨论板块。
 7. 不能相信的是，4ms的方法就是#3的方法
 8. 吃完饭，我坐在桌子前，花了5分钟，一次性提交通过
+
+
 ## 收获
 即便是一个笨法，我也应该先实现出来，要相信自己，毕竟不难。
