@@ -1,33 +1,33 @@
+#include <string>
+#include <vector>
+#include <iostream>
+using namespace std;
+
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
         vector<string> res;
-        string f(2*n, ')');
-        for(int i=0; i<n; ++i){
-            f[i]='(';
-        }
-        res.push_back(f);
-        moveRight(res, f, n, 0);
+        string s;
+        generate(res, n, n, s);
         return res;
     }
 
-    void moveRight(vector<string>& res, string& s, int n, int from){
-        if (n)
-        {
-            string f(s);
-            for (int i = from; i < s.length()-2*n; ++i)
-            {
-                swap(f[i], f[i+n]);
-                res.push_back(f);
-                moveRight(res, f, n-1, i+2);
-            }
+    void generate(vector<string>&res, int left, int right, string s){
+        if(left){
+            generate(res, left-1, right, s+"(");
         }
-
-        for(int i=from+1, j=n-1; i<from+n; ++i, --j){
-            swap(s[i], s[i+j]);
+        if(left < right){
+            generate(res, left, right-1, s+")");
+        }
+        if(right == 0){
             res.push_back(s);
-            moveRight(res, s, j, i+1);
-            swap(s[i], s[i+j]);
         }
     }
 };
+
+int main(int argc, char const *argv[])
+{
+    Solution sol;
+    sol.generateParenthesis(2);
+    return 0;
+}
