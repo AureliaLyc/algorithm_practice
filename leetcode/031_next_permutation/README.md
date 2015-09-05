@@ -14,4 +14,6 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 ```
 ## 理解
 就是给定一组数，如果把所有的排列组合都列出来，并排序，给出当前组合的下一个。而如果本来就是最大的那个，那就给出最小的那个<br>
-从右边开始找，找到非排好序的那个，把它们颠倒顺序，然后把剩下的那个跟刚好比他大的那个交换。
+从右边开始找，找到非排好序的那个，把它们颠倒顺序，然后把剩下的那个跟刚好比他大的那个交换。<br>
+ 1. 竟然有next_permutation()这样一个东西。所以 next_permutation(begin(nums), end(nums)); 就好了
+ 2. 竟然有is_sorted_until(begin(), end()); 这样的东西，好久不看stl，落后了
