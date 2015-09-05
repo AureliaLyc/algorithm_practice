@@ -3,7 +3,7 @@
 Divide two integers without using multiplication, division and mod operator.
 If it's overflow, return MAX_INT.
 ## 理解
-说一下我最初的思路。<br>
+说一下我最初的思路。
 1. 第一个方法是让divisor不断的累加，看看是否超过dividend，同时计算累加的次数。毫无疑问是正确的，但速度慢，尤其是对于divisor==1
 2. 第二个但没有实施的方法，是让divisor不断的翻倍。之所以没有实施，是因为我觉得这个方法也有点笨，不像是leetcode应该采用的方法
 3. 我去网上找了以下，看到了如下的方法，但开始发现越界的问题不那么简单，比如我无法用abs取得正确的相反数，即便自己判断出正负，直接取负数，仍然无法得到正确的值。
