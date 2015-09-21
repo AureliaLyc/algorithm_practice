@@ -12,7 +12,7 @@ public:
                 right = val;
             }
         }
-        return left*left <= a ? left : left-1 ;
+        return right-1;
     }
 };
 
