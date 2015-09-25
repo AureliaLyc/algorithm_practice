@@ -15,3 +15,11 @@ public:
         }
     }
 };
+
+
+// this is the most smart idea I have ever seen.
+void sortColors(vector<int>& nums) {
+    int r=0, w=0, b=0; // label the end of different colors;
+    for(int num: nums)
+        (nums[b++]=2) && num<2 && (nums[w++]=1) && num<1 && (nums[r++]=0);
+}
