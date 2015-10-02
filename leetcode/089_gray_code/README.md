@@ -22,3 +22,4 @@ For example, [0,2,3,1] is also a valid gray code sequence according to the above
  * 比较当前size与2^n，到达后返回。
  * 不停的实验。
  * 这道题告诉我一个道理，在算法上面，分为广度和深度两个方向，你要是不知道graycode，想写出来，难比登天。
+ * [wiki](https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code) 上面有如何转化二者。
