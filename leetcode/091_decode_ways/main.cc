@@ -3,7 +3,6 @@ public:
     int numDecodings(string s) {
         int size=s.length();
         if(size==0||s[0]=='0') return 0;
-        if(size==1) return 1;
         int f0=1, f1=1;
         for(int i=1; i<size; ++i){
             int t=f1;
