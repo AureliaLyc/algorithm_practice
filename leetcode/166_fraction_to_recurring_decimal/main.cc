@@ -22,9 +22,8 @@ public:
         if(p!=0){
             res.push_back('.');
             unordered_map<long long, int> nm;
-            int index=res.length();
             do{
-                nm[p]=index++;
+                nm[p]=res.length();
                 a=10*p;
                 q=a/b;
                 p=a%b;
