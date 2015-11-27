@@ -1,18 +1,16 @@
 class Solution {
 public:
     static bool comp(int a, int b){
-        int sizea=1;
+        long long sizea=10;
         long long m=a;
-        do{
+        while(sizea<=m){
             sizea*=10;
-            a/=10;
-        }while(a);
+        }
         long long n=b;
-        int sizeb=1;
-        do{
+        long long sizeb=10;
+        while(sizeb<=n){
             sizeb*=10;
-            b/=10;
-        }while(b);
+        }
         return (m+sizea*n)<(n+sizeb*m);
     }
     string largestNumber(vector<int>& nums) {
