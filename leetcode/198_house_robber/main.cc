@@ -24,3 +24,21 @@ public:
         return max( f[size-1], f[size-2] );
     }
 };
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int size=nums.size();
+        if(size==0) return 0;
+        if(size==1) return nums[0];
+        int f0, f1;
+        f0=nums[0];
+        f1=max(nums[0], nums[1]);
+        for(int i=2; i<size; ++i){
+            int t=max(f1, f0+nums[i]);
+            f0=f1;
+            f1=t;
+        }
+        return max(f0, f1);
+    }
+};
