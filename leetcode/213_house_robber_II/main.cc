@@ -24,3 +24,24 @@ public:
         return max(res1, res2);
     }
 };
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int size=nums.size();
+        if(size==0) return 0;
+        if(size==1) return nums[0];
+        if(size==2) return max(nums[0], nums[1]);
+        return max(robhalf(nums, 0, size-1), robhalf(nums, 1, size));
+    }
+    int robhalf(vector<int>& nums, int i, int end){
+        int f0=nums[i];
+        int f1=max(nums[i], nums[i+1]);
+        for(int j=i+2; j<end; ++j){
+            int t=max(f0+nums[j], f1);
+            f0=f1;
+            f1=t;
+        }
+        return max(f0, f1);
+    }
+};
