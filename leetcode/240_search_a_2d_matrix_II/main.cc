@@ -1,34 +1,18 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int rows=matrix.size();
-        if(rows==0) return false;
-        int columns=matrix[0].size();
-        if(columns==0) return false;
-        return search(matrix, target, 0, 0, rows, columns);
+        return search(matrix, target, 0, matrix[0].size(), 0, matrix.size(););
     }
-
-    bool search(vector<vector<int>>& matrix, int target, int up, int left, int down, int right){
-        if(up==down || left==right) return false;
+    bool search(vector<vector<int>>& matrix, int target, int left, int right, int up, int down){
+        if(!(up<down && left<right)) return false;
         int hmid=(left+right)/2;
         int lmid=(up+down)/2;
         if(matrix[lmid][hmid]==target) return true;
-        int l,u,r,d;
-        if(matrix[lmid][hmid]<target){
-            l=hmid+1;
-            u=lmid+1;
-            if(l<right||u<down){
-                return search(matrix, target, up, hmid, lmid, right) || search(matrix, target, lmid, hmid, down, right) ||
-                search(matrix, target, lmid, left, down, hmid);
-            }
+        if(matrix[lmid][hmid]<target){ // not in 2nd
+            return search(matrix, target, left, right, lmid+1, down) || search(matrix, target, hmid+1, right, up, lmid+1);
         }
-        else{
-            r=hmid;
-            d=lmid;
-            if(left<r||up<d){
-                return search(matrix, target, up, left, lmid, hmid) || search(matrix, target, up, hmid, lmid, right) ||
-                search(matrix, target, lmid, left, down, hmid);
-            }
+        else{// not in 4th
+            return search(matrix, target, left, right, up, lmid) || search(matrix, target, left, hmid, lmid, down);
         }
         return false;
     }
