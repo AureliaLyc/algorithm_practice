@@ -43,3 +43,4 @@ Given two strings s1 and s2 of the same length, determine if s2 is a scrambled s
 wow，好难呀。难道要用穷举法吗？他是如何维护了这个二叉树？魔方一样的东西
 我google了一下，但没点进去看，难道二叉树除了swap外，不会重新建立二叉树？应该是可以的。
 我因为认为可以重建二叉树，而无法利用上面这个性质，又没做出来！！shit
+
