@@ -1,25 +1,34 @@
+#include <string>
+#include <iostream>
+#include <assert.h>
+using namespace std;
+
 class Solution {
 public:
     string countAndSay(int n) {
-        string t;
-        if( n > 0 ){
-            t = "1";
-            while(n > 1){
-                string s;
-                int i = 0, j = 1;
-                size_t len = t.length();
-                while( j <= len ){
-                    if( j == len || t[i] != t[j] ){
-                        s.push_back('0'+(j-i));
-                        s.push_back(t[i]);
-                        i = j;
-                    }
-                    j++;
+        string s="1";
+        for(int i=1; i<n; ++i){
+            string t;
+            for(int j=0; j<s.length();){
+                char c=s[j];
+                int cnt=0;
+                while(j<s.length() && c==s[j]){
+                    ++j; ++cnt;
                 }
-                swap(t, s);
-                n--;
+                assert(cnt<10);
+                t.push_back('0'+cnt);
+                t.push_back(c);
             }
+            swap(s, t);
+            cout<< i << endl;
         }
-        return t;
+        return s;
     }
 };
+
+int main(int argc, char const *argv[])
+{
+    Solution abc;
+    cout<< abc.countAndSay(100);
+    return 0;
+}
