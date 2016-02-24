@@ -1,61 +1,36 @@
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
 class Solution {
 public:
     vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
         int size=intervals.size();
-        if(size==0){
-            intervals.push_back(newInterval);
-            return intervals;
-        }
-        int left=0;
-        int right=size;
-        while(left<right){
-            int mid=(left+right)/2;
-            if(intervals[mid].start<newInterval.start)
-                left=mid+1;
+        int l=0, r=size;
+        // find the first Interval which would merge with newInterval.
+        while(l<r){
+            int m=(l+r)/2;
+            if(intervals[m].end<newInterval.start)
+                l=m+1;
             else
-                right=mid;
+                r=m;
         }
-        // left is not less than newInterval.
-        if(left==0 && newInterval.end<intervals[0].start){
-            intervals.insert(intervals.begin(), newInterval);
-            return intervals;
+        int left=l; r=size;
+        // find the first Interval which would not merge with newInterval.
+        while(l<r){
+            int m=(l+r)/2;
+            if(intervals[m].start<=newInterval.end)
+                l=m+1;
+            else
+                r=m;
         }
-        if(left==size && newInterval.start>intervals[size-1].end){
-            intervals.push_back(newInterval);
-            return intervals;
-        }
-        if(newInterval.start>intervals[left-1].end && newInterval.end<intervals[left].start){
-            intervals.insert(intervals.begin()+left, newInterval);
-            return intervals;
-        }
-        if(left==0 && newInterval.end>=intervals[0].start){
-            intervals[0].start=newInterval.start;
-            intervals[0].end=max(newInterval.end, intervals[0].end);
-        }
-        else if(newInterval.start<=intervals[left-1].end){
-            --left;
-            intervals[left].end=max(intervals[left].end, newInterval.end);
-        }
+        // if they are the same, then means no overlap. just insert.
+        if(left==r)
+            intervals.insert(intervals.begin()+r, newInterval);
+        // has overlap. Merge them by finding the min(start) and max(end). 
+        // Then erase the Intervals between left+1 to r.
         else{
-            intervals[left].start=newInterval.start;
-            intervals[left].end=max(intervals[left].end, newInterval.end);
+            intervals[left].start=min(intervals[left].start, newInterval.start);
+            int t=max(intervals[left].end, newInterval.end);
+            intervals[left].end=max(t, intervals[r-1].end);
+            intervals.erase(intervals.begin()+left+1, intervals.begin()+r);
         }
-        right=left+1;
-        int end=intervals[left].end;
-        while(right<size && end>=intervals[right].start){
-            end=max(end, intervals[right++].end);
-        }
-        intervals[left].end=end;
-        intervals.erase(intervals.begin()+left+1, intervals.begin()+right);
         return intervals;
     }
 };
