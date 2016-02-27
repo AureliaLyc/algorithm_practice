@@ -30,3 +30,28 @@ public:
         return matrix[n][left-1] == target;
     }
 };
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int size=matrix[0].size();
+        int l=0, r=matrix.size();
+        while(l<r){
+            int m=(l+r)/2;
+            if(matrix[m][size-1]<target)
+                l=m+1;
+            else
+                r=m;
+        }
+        if(l==matrix.size()) return false;
+        vector<int>& ans=matrix[l];
+        l=0, r=size;
+        while(l<r){
+            int m=(l+r)/2;
+            if(ans[m]<target)
+                l=m+1;
+            else
+                r=m;
+        }
+        return ans[l]==target;
+    }
+};
