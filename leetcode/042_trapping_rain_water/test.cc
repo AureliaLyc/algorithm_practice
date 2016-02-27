@@ -4,9 +4,8 @@ using namespace std;
 class Solution {
 public:
     int trap(vector<int>& height) {
-        int size=height.size();
         int l=0;
-        int r=size-1;
+        int r=height.size();-1;
         int res=0;
         int pl=0;
         while(l<r){
