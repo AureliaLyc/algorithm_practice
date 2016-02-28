@@ -72,3 +72,25 @@ public:
         return res;
     }
 };
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* res=nullptr;
+        ListNode* tail=nullptr;
+        ListNode* l=head;
+        ListNode* r=head?head->next:nullptr;
+        while(l){
+            if(r==nullptr||l->val!=r->val){
+                if(l->next==r){
+                    res=res?res:l;
+                    if(tail) tail->next=l;
+                    tail=l;
+                    tail->next=nullptr;
+                }
+                l=r;
+            }
+            r=r?r->next:nullptr;
+        }
+        return res;
+    }
+};
