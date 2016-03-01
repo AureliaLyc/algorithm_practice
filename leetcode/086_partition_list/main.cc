@@ -37,3 +37,27 @@ public:
         return low;
     }
 };
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* l=nullptr, *lh=nullptr;
+        ListNode* r=nullptr, *rh=nullptr;
+        while(head){
+            ListNode* t=head->next;
+            ListNode**m=head->val<x?&l:&r;
+            ListNode**mh=head->val<x?&lh:&rh;
+            if(*mh==nullptr) *mh=head;
+            if(*m){
+                (*m)->next=head;
+            }
+            *m=head;
+            (*m)->next=nullptr;
+            head=t;
+        }
+        if(l){
+            l->next=rh;
+            return lh;
+        }
+        return rh;
+    }
+};

@@ -1,22 +1,21 @@
 class Solution {
 public:
-    void createCombinations(vector<vector<int> >& res, vector<int>& v, int n, int k, int start){
-        if(k){
-            while(start<=n-k+1){
-                v.push_back(start++);
-                createCombinations(res, v, n, k-1, start);
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> v;
+        build(res, v, 1, n, k);
+        return res;
+    }
+    void build(vector<vector<int>>& res, vector<int>& v, int start, int n, int k){
+        if(v.size()==k){
+            res.push_back(v);
+        }
+        else{
+            for(int i=start; i<=n; ++i){
+                v.push_back(i);
+                build(res, v, i+1, n, k);
                 v.pop_back();
             }
         }
-        else{
-            res.push_back(v);
-        }
-    }
-    vector<vector<int>> combine(int n, int k) {
-        vector<vector<int> > res;
-        vector<int> v;
-        v.reserve(k);
-        createCombinations(res, v, n, k, 1);
-        return res;
     }
 };
