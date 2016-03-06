@@ -19,3 +19,19 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> res;
+        res.reserve(numRows);
+        while(res.size()<numRows){
+            vector<int> v(res.size()+1, 1);
+            for(int i=1; i<=(res.size())/2; ++i){
+                v[i]=v[v.size()-1-i]=res.back()[i]+res.back()[i-1];
+            }
+            res.push_back(v);
+        }
+        return res;
+    }
+};
