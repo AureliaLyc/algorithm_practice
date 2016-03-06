@@ -27,3 +27,22 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        res.push_back(nums);
+        build(res, nums, 0);
+        return res;
+    }
+    void build(vector<vector<int>>& res, vector<int>& nums, int start){
+        if(start<nums.size()-1) build(res, nums, start+1);
+        for(int i=start+1; i<nums.size(); ++i){
+            swap(nums[i], nums[start]);
+            res.push_back(nums);
+            build(res, nums, start+1);
+            swap(nums[i], nums[start]);
+        }
+    }
+};
