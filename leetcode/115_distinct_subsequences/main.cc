@@ -43,6 +43,26 @@ public:
         return d[0][0];
     }
 };
+class Solution {
+public:
+    int numDistinct(string s, string t) {
+        int sz=s.length();
+        int st=t.length();
+        vector<int> d(sz+1, 0);
+        for(int i=0; i<sz; ++i){
+            d[i+1]=d[i]+(t[0]==s[i]);
+        }
+        for(int i=1; i<st; ++i){
+            int pre=0;
+            for(int j=0; j<sz; ++j){
+                int p=d[j+1];
+                d[j+1]=d[j]+((s[j]==t[i])?pre:0);
+                pre=p;
+            }
+        }
+        return d.back();
+    }
+};
 
 int main(int argc, char const *argv[])
 {
