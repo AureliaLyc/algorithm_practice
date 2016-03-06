@@ -37,3 +37,23 @@ public:
         }
     }
 };
+
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        
+        while(root){
+            TreeLinkNode* fir=nullptr;
+            TreeLinkNode* tn=root;
+            TreeLinkNode* pre=nullptr;
+            while(tn){
+                if(!fir) fir=tn->left?tn->left:tn->right;
+                if(pre) pre->next=tn->left?tn->left:tn->right;
+                if(tn->left) tn->left->next=tn->right;
+                pre=(tn->left||tn->right)?(tn->right?tn->right:tn->left):pre;
+                tn=tn->next;
+            }
+            root=fir;
+        }
+    }
+};
