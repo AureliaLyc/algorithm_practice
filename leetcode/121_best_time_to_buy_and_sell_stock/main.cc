@@ -17,3 +17,17 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int res=0;
+        int size=prices.size();
+        int low=INT_MAX;
+        for(int i=0; i<size; ++i){
+            low=min(prices[i], low);
+            res=max(res, prices[i]-low);
+        }
+        return res;
+    }
+};
