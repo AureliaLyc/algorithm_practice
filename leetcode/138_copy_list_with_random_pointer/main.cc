@@ -1,12 +1,3 @@
-#include <unordered_map>
-//#include <utility>
-using namespace std;
-struct RandomListNode {
-    int label;
-    RandomListNode *next, *random;
-    RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
-};
-
 class Solution {
 public:
     RandomListNode *copyRandomList(RandomListNode *head) {
@@ -27,8 +18,30 @@ public:
     }
 };
 
-int main(int argc, char const *argv[])
-{
-    /* code */
-    return 0;
-}{-1,8,7,-3,4,4,-3,#,#,-1}
+class Solution {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if(!head) return nullptr;
+        RandomListNode* p=head;
+        while(p){
+            RandomListNode* n=p->next;
+            p->next=new RandomListNode(p->label);
+            p->next->next=n;
+            p=n;
+        }
+        p=head;
+        while(p){
+            p->next->random=p->random?p->random->next:nullptr;
+            p=p->next->next;
+        }
+        p=head;
+        RandomListNode* res=head->next;
+        while(p){
+            RandomListNode* n=p->next;
+            p->next=n->next;
+            n->next=p->next?p->next->next:nullptr;
+            p=p->next;
+        }
+        return res;
+    }
+};
