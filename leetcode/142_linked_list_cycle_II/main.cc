@@ -27,3 +27,23 @@ public:
         return nd2;
     }
 };
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* l=head;
+        ListNode* r=head;
+        while(r&&r->next){
+            l=l->next;
+            r=r->next->next;
+            if(l==r) break;
+        }
+        if(!r||!r->next) return nullptr;
+        l=head;
+        while(l!=r){
+            l=l->next;
+            r=r->next;
+        }
+        return l;
+    }
+};

@@ -25,3 +25,21 @@ public:
         }
     }
 };
+
+class Solution {
+public:
+void reverseWords(string &s) {
+    int size=s.length();
+    int l=0;
+    for(int r=0; r<size; ++r){
+        // check if r the ending char.
+        if(s[r]!=' '&&(r==size-1||s[r+1]==' ')){
+            // starting to reverse. But for the beginning, no space.
+            int m=l==0?l:++l, n=r;
+            while(m<n) swap(s[m++], s[n--]);
+            while(l<size&&s[l]!=' ')++l;
+        }
+    }
+    s.erase(l);
+    reverse(s.begin(), s.end());
+}};

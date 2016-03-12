@@ -23,3 +23,24 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> stac;
+        while(root || !stac.empty()){
+            if(root){
+                res.push_back(root->val);
+                stac.push(root);
+                root=root->left;
+            }
+            else{
+                root=stac.top();
+                stac.pop();
+                root=root->right;
+            }
+        }
+        return res;
+    }
+};

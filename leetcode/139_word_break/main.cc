@@ -19,3 +19,24 @@ public:
         return flags.back();
     }
 };
+
+class Solution {
+public:
+    bool wordBreak(string s, unordered_set<string>& wordDict) {
+        int size=s.length();
+        vector<int> d(size+1, 0);
+        d[0]=1;
+        for(int i=0; i<size; ++i){
+            if(d[i]){
+                string t;
+                for(int j=i; j<size; ++j){
+                    t.push_back(s[j]);
+                    if(wordDict.find(t)!=wordDict.end()){
+                        d[j+1]=1;
+                    }
+                }
+            }
+        }
+        return d.back();
+    }
+};
