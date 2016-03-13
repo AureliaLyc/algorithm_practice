@@ -35,11 +35,20 @@ int compareVersion(string version1, string version2) {
     } while( !version1.empty() || !version2.empty());
     return 0;
 }
-
-int main(int argc, char const *argv[])
-{
-    string v1("1.0");
-    string v2("1.1");
-    compareVersion(v1, v2);
-    return 0;
-}
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        do{
+            int v1=version1.empty()?0:stoi(version1);
+            int v2=version2.empty()?0:stoi(version2);
+            if(v1!=v2){
+                return v1>v2?1:-1;
+            }
+            auto dot=version1.find_first_of('.');
+            version1=dot==string::npos?"":version1.substr(dot+1);
+            dot=version2.find_first_of('.');
+            version2=dot==string::npos?"":version2.substr(dot+1);
+        } while(!version1.empty()||!version2.empty());
+        return 0;
+    }
+};
