@@ -1,8 +1,3 @@
-#include <unordered_set>
-#include <string>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
@@ -20,10 +15,33 @@ public:
     }
 };
 
-int main(int argc, char const *argv[])
-{
-    string a="AAAAAAAAAAA";
-    Solution abc;
-    abc.findRepeatedDnaSequences(a);
-    return 0;
-}
+
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        int size=s.length();
+        vector<string> res;
+        vector<char> um(0xFFFFF, 0);
+        int mask=0xFFFFF;
+        int val=0;
+        for(int i=0; i<size; ++i){
+            val=val<<2;
+            if(s[i]=='C'){
+                val|=1;
+            }
+            else if(s[i]=='G'){
+                val|=2;
+            }
+            else if(s[i]=='T'){
+                val|=3;
+            }
+            if(i>8){
+                val=val&mask;
+                if(um[val]++==1){
+                    res.push_back(s.substr(i-9, 10));
+                }
+            }
+        }
+        return res;
+    }
+};
