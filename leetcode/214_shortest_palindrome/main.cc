@@ -25,6 +25,27 @@ public:
 class Solution {
 public:
     string shortestPalindrome(string s) {
+        string r=s;
+        reverse(r.begin(), r.end());
+        string p=s+"#"+r;
+        int size=p.length();
+        vector<int> v(size, 0);
+        for(int i=1; i<size; ++i){
+            int j=v[i-1];
+            while(j>0&&p[j]!=p[i]){
+                j=v[j-1];
+            }
+            if(p[j]==p[i])++j;
+            v[i]=j;
+        }
+        string t=s.substr(v.back());
+        reverse(t.begin(), t.end());
+        return t+s;
+    }
+};
+class Solution {
+public:
+    string shortestPalindrome(string s) {
         int size=s.length();
         int mid=size/2;
         while(mid>=0){

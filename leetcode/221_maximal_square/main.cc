@@ -31,3 +31,23 @@ public:
         return res*res;
     }
 };
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if(matrix.size()==0||matrix[0].size()==0) return 0;
+        int r=matrix.size();
+        int c=matrix[0].size();
+        vector<int> d(c, 0);
+        int maxArea=0;
+        for(int i=0; i<r; ++i){
+            int pre=d[0];
+            for(int j=0; j<c; ++j){
+                int t=matrix[i][j]=='1'?min(pre, min(j==0?0:d[j-1], d[j]))+1:0;
+                pre=d[j];
+                d[j]=t;
+                maxArea=max(maxArea, t);
+            }
+        }
+        return maxArea*maxArea;
+    }
+};
