@@ -38,3 +38,30 @@ int main(int argc, char const *argv[])
     abc.isInterleave("aabcc", "dbbca", "aadbbbccca");
     return 0;
 }
+
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int sz1=s1.length();
+        int sz2=s2.length();
+        int sz3=s3.length();
+        if(sz1+sz2!=sz3) return false;
+        vector<int> d(sz1+1, 0);
+        d[0]=1;
+        for(int i=1; i<=sz1&&d[i-1]==1; ++i){
+            d[i]=s1[i-1]==s3[i-1]?1:0;
+        }
+        for(int i=1; i<=sz2; ++i){
+            d[0]=d[0]==1?(s2[i-1]==s3[i-1]?1:0):0;
+            for(int j=1; j<=sz1; ++j){
+                if(d[j]==1){
+                    d[j]=s2[i-1]==s3[i+j-1]?1:0;
+                }
+                if(d[j]==0&&d[j-1]==1){
+                    d[j]=s1[j-1]==s3[i+j-1]?1:0;
+                }
+            }
+        }
+        return d.back();
+    }
+};
